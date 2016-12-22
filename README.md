@@ -1,3 +1,4 @@
+*turn and face the strange*
 # Chchchanges
 
 ### chchchanges makes it convenient to create and maintain a proper CHANGELOG.
@@ -23,7 +24,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+When starting a changelog from scratch, simply use the command `$ chchchanges -e` and
+follow the prompts to create a changelog entry. Than command will create a .json file with the changelog entry data. The file name will be unique, thereby ensuring that future changelog entries will not result in git merge conflicts.  Every time you generate a changelog entry with the `chchchanges -e` command, a new unique file is created.
+
+### *But now I have a bunch of .json files with changelog data, and I want to have a nice CHANGELOG.md document*
+
+To generate a CHANGELOG.md document from your .json changelog entry files, run the command `$ chchchanges -g`
 
 ## Development
 
