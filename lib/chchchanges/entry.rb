@@ -1,13 +1,13 @@
 require 'json'
 require 'securerandom'
 module Chchchanges
-
   class Entry
 
     def initialize
     end
 
     def call
+      Dir.mkdir('.changelog_entries') unless Dir.exists?('.changelog_entries')
       write_to_file
     end
 

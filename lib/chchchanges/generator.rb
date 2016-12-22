@@ -42,7 +42,7 @@ module Chchchanges
           end
         end
       end
-      File.write('9CHANGELOG.md', @changelog)
+      File.write('CHANGELOG.md', @changelog)
     end
   end
 end

@@ -1,3 +1,49 @@
 #!/usr/bin/env ruby
 
-puts "Using your chchchanges executable…"
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+
+require 'chchchanges'
+require 'optparse'
+
+options = {}
+
+option_parser = OptionParser.new do |opts|
+  executable_name = File.basename($PROGRAM_NAME)
+  opts.banner = "
+    Chchchanges makes it convenient to create and maintain a proper CHANGELOG.
+
+    Usage: chchchanges [options]
+  "
+
+  opts.on('-e', '--entry', 'Create a CHANGELOG entry') do
+    options[:entry] = true
+  end
+
+  opts.on('-g', '--generator', 'Generate a CHANGELOG from existing entries') do
+    options[:generator] = true
+  end
+
+  opts.on('-p', '--parser', 'Parse an existing CHANGELOG into individual .json files') do
+    options[:parser] = true
+  end
+
+end
+
+begin
+  option_parser.parse!
+  rescue OptionParser::InvalidOption => error
+  puts "Spydecz doesn't recognize that #{ error }"
+  exit
+  rescue OptionParser::AmbiguousOption => error
+  puts "That's an #{ error}"
+  exit
+end
+
+if options.empty?
+  puts "    error: you must enter a --entry, --generator, or --paser option"
+  puts option_parser.help
+else
+  Chchchanges::Entry.new.call if options[:entry]
+  Chchchanges::Generator.new.call if options[:generator]
+  Chchchanges::Parser.new.call if options[:parser]
+end
