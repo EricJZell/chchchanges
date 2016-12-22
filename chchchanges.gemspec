@@ -12,7 +12,9 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{chchchanges makes it convenient to create and maintain a proper CHANGELOG.}
   spec.description   = %q{chchchanges makes it convenient to create and maintain a proper CHANGELOG.
                           Users can create CHANGELOG entries from the command line. Each entry is saved
-                          as in individual .json file which prevents CHANGELOG merge conflicts.}
+                          as in individual .json file which prevents CHANGELOG merge conflicts.
+                          For more info, check out the README or inspect the code at
+                          https://github.com/EricJZell/chchchanges}
   spec.homepage      = "https://github.com/EricJZell/chchchanges"
   spec.license       = "MIT"
 
