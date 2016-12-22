@@ -11,6 +11,7 @@ module Chchchanges
     end
 
     def call
+      Dir.mkdir('.changelog_entries') unless Dir.exists?('.changelog_entries')
       parse_changelog
       write_to_files
     end
