@@ -32,7 +32,7 @@ end
 begin
   option_parser.parse!
   rescue OptionParser::InvalidOption => error
-  puts "Spydecz doesn't recognize that #{ error }"
+  puts "Chchchanges doesn't recognize that #{ error }"
   exit
   rescue OptionParser::AmbiguousOption => error
   puts "That's an #{ error}"

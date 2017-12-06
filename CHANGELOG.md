@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.1.2]
+### Fixed
+- [] Fix a type from 'spydec' to 'chchchanges'
+
 ## [0.1.1]
 ### Added
 - [] Added a 'usage' section to the README
