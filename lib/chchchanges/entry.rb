@@ -1,3 +1,4 @@
+require 'readline'
 require 'json'
 require 'securerandom'
 module Chchchanges
@@ -15,7 +16,7 @@ module Chchchanges
 
     def get_version
       puts "What is the targeted release version for this change? (example '15.5.11')"
-      user_input = gets.chomp
+      user_input = get_user_input
       if user_input.match(/^(\d+\.)+\d+$/)
         return user_input
       else
@@ -33,7 +34,7 @@ module Chchchanges
       change_types_hash.each do |number, change_type|
         puts "#{number} - #{change_type}\n"
       end
-      user_input = gets.chomp
+      user_input = get_user_input
       if change_types_hash.keys.include?(user_input.to_i)
         return change_types_hash[user_input.to_i]
       else
@@ -44,18 +45,18 @@ module Chchchanges
 
     def get_tags
       puts "Please enter any tags, comma separated. (Optional)"
-      tags = gets.chomp.split(',')
+      tags = get_user_input.split(',')
       tags.map! { |tag| tag.strip}
     end
 
     def get_ticket
       puts "Please enter Ticket # (Optional):"
-      ticket = gets.chomp
+      @ticket = get_user_input
     end
 
     def get_description
       puts "Please enter a description for this change (at least 5 characters):"
-      description = gets.chomp
+      description = get_user_input
       if description.match(/^.{5}/)
         return description
       else
@@ -83,7 +84,11 @@ module Chchchanges
         version: version,
         tags: get_tags
       }.to_json
-      File.write(".changelog_entries/#{Time.now.strftime("%Y_%m_%d_%H%M")}_v#{version}.json", info)
+      File.write(".changelog_entries/#{Time.now.strftime("%Y%m%d%H%M%S%L")}_ticket#{@ticket}.json", info)
+    end
+
+    def get_user_input
+      Readline.readline('', true).strip
     end
 
   end

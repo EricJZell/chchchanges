@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "chchchanges"
-
+require 'pry'
 APP_ROOT = File.expand_path('../..', __FILE__)
 
 

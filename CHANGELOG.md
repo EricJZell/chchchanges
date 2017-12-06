@@ -1,6 +1,8 @@
 # Change Log
 
 ## [0.1.2]
+### Changed
+- [] Change from using gets.chomp to Readline gem
 ### Fixed
 - [] Fix a type from 'spydec' to 'chchchanges'
 
