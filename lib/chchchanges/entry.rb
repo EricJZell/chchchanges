@@ -3,12 +3,14 @@ require 'json'
 require 'securerandom'
 module Chchchanges
   class Entry
+    attr_reader :entry_file_dir
 
-    def initialize
+    def initialize(entry_file_dir='.changelog_entries')
+      @entry_file_dir = entry_file_dir
     end
 
     def call
-      Dir.mkdir('.changelog_entries') unless Dir.exists?('.changelog_entries')
+      Dir.mkdir(@entry_file_dir) unless Dir.exists?(@entry_file_dir)
       write_to_file
     end
 
@@ -84,7 +86,7 @@ module Chchchanges
         version: version,
         tags: get_tags
       }.to_json
-      File.write(".changelog_entries/#{Time.now.strftime("%Y%m%d%H%M%S%L")}_ticket#{@ticket}.json", info)
+      File.write("#{@entry_file_dir}/#{Time.now.strftime("%Y%m%d%H%M%S%L")}_ticket#{@ticket}.json", info)
     end
 
     def get_user_input
